@@ -1,0 +1,11 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"main">;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<main class={`container py-4 px-10 md:px-12 lg:px-24 xl:px-44 ${className}`} {...props}>
+    <slot />
+</main>

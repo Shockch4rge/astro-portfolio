@@ -1,0 +1,21 @@
+---
+import { CollectionEntry, getCollection } from "astro:content";
+import BlogPost from "@layouts/blog/BlogPost.astro";
+
+export async function getStaticPaths() {
+    const posts = await getCollection("blog");
+    return posts.map(post => ({
+        params: { slug: post.slug },
+        props: post,
+    }));
+}
+
+type Props = CollectionEntry<"blog">;
+
+const post = Astro.props;
+const { Content, remarkPluginFrontmatter: frontmatter, headings } = await post.render();
+---
+
+<BlogPost frontmatter={frontmatter} {...post.data} headings={headings}>
+    <Content />
+</BlogPost>

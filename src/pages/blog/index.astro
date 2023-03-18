@@ -1,0 +1,122 @@
+---
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import { getCollection } from "astro:content";
+import BaseHead from "@components/BaseHead.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import FormattedDate from "@components/FormattedDate.astro";
+import BlogTag from "@layouts/blog/components/BlogTag.astro";
+import Container from "@components/Container.astro";
+import Badge from "@components/Badge.astro";
+
+const posts = (await getCollection("blog")).sort(
+    (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf()
+);
+
+const isNewPost = (date: Date) => {
+    const twoWeeksMs = 1000 * 60 * 60 * 24 * 14;
+    const diffMs = new Date().getTime() - date.getTime();
+    return diffMs < twoWeeksMs;
+}
+---
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    </head>
+    <body>
+        <Header />
+        <main>
+            <Container>
+                <div class="my-8 md:flex md:justify-between md:items-center">
+                    <h3 class="hero-font text-3xl">Blog Posts</h3>
+                    <h3 class="text-gray-500 text-xl">{posts.length} so far!</h3>
+                </div>
+                <ul class="w-full space-y-4 list-none">
+                    {
+                        posts.map((post, i) => (
+                            <li>
+                                {isNewPost(post.data.publishedAt) && (
+                                    <Badge class="mb-2 text-cyan-200 outline outline-2 outline-cyan-400 animate-hover motion-reduce:animate-none will-change-transform motion-reduce:will-change-auto">
+                                        LATEST POST
+                                    </Badge>
+                                )}
+                                <a href={`/blog/${post.slug}/`} class="w-full focus:ring-4 group">
+                                    <div
+                                        class={`
+                                            w-full p-0.5 ${
+                                                isNewPost(post.data.publishedAt)
+                                                    ? "is-new-post"
+                                                    : "bg-gradient-to-tr from-slate-400 to-gray-700"
+                                            } 
+                                            rounded-lg relative
+                                        `}
+                                        aria-hidden="true"
+                                    >
+                                        <div class="p-6 md:p-8 space-y-3 bg-gray-900 rounded-lg relative">
+                                            <FormattedDate
+                                                date={post.data.publishedAt}
+                                                class="text-gray-600"
+                                            />
+                                            <h3 class="text-2xl hero-font">{post.data.title}</h3>
+                                            {post.data.tags && (
+                                                <ul
+                                                    class="flex flex-wrap space-x-2"
+                                                    title={`Tags: ${post.data.tags.join(", ")}`}
+                                                >
+                                                    {post.data.tags.map(tag => (
+                                                        <BlogTag
+                                                            aria-label={`Filter blog posts by ${tag}`}
+                                                        >
+                                                            {tag}
+                                                        </BlogTag>
+                                                    ))}
+                                                </ul>
+                                            )}
+                                            <p class="max-w-lg text-base md:text-lg text-gray-500">
+                                                {post.data.description}
+                                            </p>
+                                            <h6
+                                                class={`text-sm md:text-lg ${
+                                                    isNewPost(post.data.publishedAt)
+                                                        ? "text-cyan-300"
+                                                        : "text-gray-400"
+                                                } opacity-0 group-hover:opacity-100 lg:absolute lg:translate-y-1/2 lg:group-hover:translate-x-6 lg:bottom-1/2 lg:right-16 transition ease-in-out`}
+                                            >
+                                                Read More
+                                                <i class="ml-2 md:ml-3 fa-solid fa-chevron-right text-xs md:text-sm" />
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </Container>
+        </main>
+        <Footer />
+        <style>
+            .is-new-post {
+                background: radial-gradient(
+                    farthest-corner at top,
+                    theme("colors.teal.100") 0%,
+                    theme("colors.teal.100") 4%,
+                    theme("colors.cyan.300") 12.25%,
+                    theme("colors.cyan.400") 40%,
+                    theme("colors.cyan.400") 40%,
+                    theme("colors.blue.500") 50%
+                );
+                background-size: 200% auto;
+                animation: shine 5s ease-in-out infinite alternate;
+            }
+
+            @keyframes shine {
+                from {
+                    background-position: right;
+                }
+            }
+        </style>
+    </body>
+</html>

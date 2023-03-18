@@ -1,0 +1,116 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import Link from "../components/Link.astro";
+import Container from "@components/Container.astro";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    </head>
+    <body>
+        <Header title={SITE_TITLE} />
+        <main>
+            <Container class="gap-4">
+                <article>
+                    <p>
+                        Welcome to my portfolio/blog/website. I'm Singaporean, and I currently study
+                        at
+                        <Link href="https://tp.edu.sg">Temasek Polytechnic</Link>, taking a diploma
+                        in Information Technology.
+                    </p>
+                    <p>
+                        I'm also currently taking an internship at <Link
+                            href="https://www.tech.gov.sg"
+                        >
+                            GovTech
+                        </Link> in Singapore.
+                    </p>
+                    <p>
+                        In 2017, I was messing around in my secondary school's computer lab with my
+                        friends. There, I discovered an amazing tool called 'Inspect Element' and
+                        'vandalised' some websites with them. It was quite fascinating, seeing how I
+                        could drastically change the content of a site with just a few lines of
+                        code.
+                    </p>
+                    <p>
+                        Welcome to the official <Link href="https://astro.build/">Astro</Link> blog starter
+                        template. This template serves as Link lightweight, minimally-styled starting
+                        point for anyone looking to build a personal website, blog, or portfolio with
+                        Astro.
+                    </p>
+                    <p>
+                        This template comes with a few integrations already configured in your
+                        <code>astro.config.mjs</code> file. You can customize your setup with
+                        <Link href="https://astro.build/integrations">Astro Integrations</Link> to add
+                        tools like Tailwind, React, or Vue to your project.
+                    </p>
+                    <p>Here are Link few ideas on how to get started with the template:</p>
+                    <ul>
+                        <li>Edit this page in <code>src/pages/index.astro</code></li>
+                        <li>
+                            Edit the site header items in <code>src/components/Header.astro</code>
+                        </li>
+                        <li>
+                            Add your name to the footer in <code>src/components/Footer.astro</code>
+                        </li>
+                        <li>Check out the included blog posts in <code>src/pages/blog/</code></li>
+                        <li>
+                            Customize the blog post page layout in <code
+                                >src/layouts/BlogPost.astro</code
+                            >
+                        </li>
+                    </ul>
+                    <p>
+                        Have fun! If you get stuck, remember to <Link
+                            href="https://docs.astro.build/"
+                        >
+                            read the docs
+                        </Link> or <Link href="https://astro.build/chat">join us on Discord</Link> to
+                        ask questions.
+                    </p>
+                    <p>
+                        Looking for Link blog template with Link bit more personality? Check out <Link
+                            href="https://github.com/Charca/astro-blog-template"
+                        >
+                            astro-blog-template
+                        </Link> by <Link href="https://twitter.com/Charca">Maxi Ferreira</Link>.
+                    </p>
+
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum labore soluta
+                        hic velit delectus molestias corporis ab sit, saepe nostrum, enim voluptatum
+                        dignissimos blanditiis. Quis impedit obcaecati maiores voluptate vitae?
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel ipsa ipsum qui
+                        dolores harum consectetur saepe, magnam, eveniet ipsam exercitationem fuga
+                        sunt, voluptates inventore perspiciatis quasi doloremque voluptatibus odio?
+                        Ipsum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel,
+                        quaerat? Officia natus ipsam consequatur saepe adipisci molestias autem
+                        tempora aspernatur fuga, accusantium culpa mollitia! Pariatur ipsa similique
+                        itaque voluptatibus aliquid? Lorem ipsum dolor, sit amet consectetur
+                        adipisicing elit. Laudantium repellendus voluptate quasi eveniet quo, sunt
+                        suscipit esse tenetur sed! Ab nesciunt quod architecto mollitia facere
+                        voluptatem voluptate voluptas animi eveniet! Lorem ipsum, dolor sit amet
+                        consectetur adipisicing elit. Ab, vitae amet neque eum earum nihil eligendi?
+                        Quos iure, non impedit nesciunt animi consectetur ab praesentium
+                        voluptatibus illum vitae repellendus itaque. Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit. Eligendi iste blanditiis consequatur minima?
+                        Sapiente dolor voluptatibus sed, ex molestias sequi placeat sunt? Ex quos
+                        possimus quasi iusto nulla saepe libero? Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit. Laborum error quidem nemo? Harum possimus at
+                        illum pariatur nemo cupiditate deserunt ab culpa natus, repudiandae earum,
+                        eveniet quo. Dolor, tempora quisquam? Lorem ipsum dolor sit amet
+                        consectetur, adipisicing elit. Libero, iusto esse veniam reiciendis
+                        molestias fugit non voluptates quis expedita, praesentium dolorem excepturi
+                        rem enim. Quasi accusantium optio natus tempora nihil.
+                    </p>
+                </article>
+            </Container>
+        </main>
+        <Footer />
+    </body>
+</html>

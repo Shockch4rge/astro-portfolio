@@ -1,0 +1,16 @@
+---
+import Container from "./Container.astro";
+
+const today = new Date();
+---
+
+<footer class="mt-12 py-8 md:py-12 bg-gray-900">
+    <Container class="md:flex justify-between">
+        <h3 class="text-base md:text-lg text-center">
+            {today.getFullYear()} &bull; Made with &nbsp;<i
+                aria-label="love"
+                class="fa-solid fa-heart text-pink-500 hover:text-cyan-500 transition duration-200"
+            ></i>&nbsp; by Favian Teo
+        </h3>
+    </Container>
+</footer>

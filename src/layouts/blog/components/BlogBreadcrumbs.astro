@@ -1,0 +1,21 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"ul"> & { links: { name: string; href: string }[] };
+
+const { links, class: className, ...props } = Astro.props;
+---
+
+<nav>
+    <ul class:list={["flex flex-col md:flex-row md:space-x-2 list-none", className]} {...props}>
+        {
+            links.map(link => (
+                <li class="text-base md:text-lg text-gray-600 after:content-['/'] last:after:content-none md:after:content-['>']">
+                    <a href={link.href} class="text-slate-400">
+                        {link.name}
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</nav>

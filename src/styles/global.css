@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Karla&display=swap');
+
+@font-face {
+	font-family: Avigea;
+	src: url("/fonts/Avigea.woff2") format("woff2"), url("./fonts/Avigea.woff") format("woff");
+	font-display: swap;
+}
+
+@font-face {
+	font-family: Avigea;
+	src: url("/fonts/Avigea Italic.woff2") format("woff2"), url("fonts/Avigea Italic.woff") format("woff");
+	font-style: italic;
+	font-display: swap;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+button {
+	@apply focus:ring-2 focus:ring-cyan-500 focus:ring-inset
+}
+
+body {
+	font-family: "Karla", sans-serif;
+	margin: auto;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	hyphens: auto;
+	background: radial-gradient(
+		farthest-side at bottom left, 
+		hsl(212, 48%, 18%) 0%, 
+		hsl(213, 51%, 17%) 50%,
+		hsl(219, 54%, 10%) 100%
+	);
+	@apply text-slate-300 text-base md:text-lg lg:text-xl;
+}
+
+textarea {
+	width: 100%;
+	font-size: 16px;
+}
+
+input {
+	font-size: 16px;
+}
+
+content {
+	line-height: 1.6;
+}
+
+table {
+	width: 100%;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+code {
+	@apply px-1 py-1 text-base bg-slate-400/10 font-["JetBrains_Mono",monospace] rounded-md;
+}
+
+pre {
+	padding: 1rem;
+}
+
+pre > code {
+	all: unset;
+}
+
+blockquote {
+	border: 1px solid #999;
+	color: #222;
+	padding: 2px 0px 2px 20px;
+	margin: 0px;
+	font-style: italic;
+}
+
+.hero-font {
+	@apply font-['Avigea'] leading-10 tracking-wider;
+}
+
+.format-markdown-content {
+	@apply prose-cyan prose-xl prose-h2:text-cyan-400 hover:prose-h2:underline prose-h3:text-cyan-500 prose-h3:text-3xl dark:prose-invert;
+}

@@ -1,0 +1,82 @@
+---
+import type { MarkdownLayoutProps } from "astro";
+import type { CollectionEntry } from "astro:content";
+import BlogBreadcrumbs from "./components/BlogBreadcrumbs.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Container from "@components/Container.astro";
+import BaseHead from "@components/BaseHead.astro";
+import FormattedDate from "@components/FormattedDate.astro";
+import BlogToc from "./components/toc/BlogToc.astro";
+
+type Props = CollectionEntry<"blog">["data"] &
+    MarkdownLayoutProps<{
+        title: string;
+        description: string;
+        publishedAt: string;
+        updatedAt?: string;
+        heroImage?: string;
+        tags?: string[];
+        estimatedReadTime?: number;
+    }>;
+
+const { title, description, publishedAt, updatedAt, heroImage, tags, frontmatter, headings } =
+    Astro.props;
+---
+
+<html lang="en">
+    <BaseHead title={title} description={description} />
+    <body>
+        <Header />
+        <main>
+            <Container class="py-2 md:py-4">
+                <BlogBreadcrumbs
+                    links={[
+                        {
+                            name: "Home",
+                            href: "/",
+                        },
+                        {
+                            name: "Blog Posts",
+                            href: "/blog",
+                        },
+                        {
+                            name: title,
+                            href: `/blog/${title}`,
+                        },
+                    ]}
+                />
+                <h1 class="mt-4 mb-6 md:my-8 text-3xl lg:text-4xl font-bold">
+                    {title}
+                </h1>
+                {
+                    tags && (
+                        <ul class="mb-6 flex flex-wrap space-x-1.5 list-none">
+                            {tags.map(tag => (
+                                <button class="py-1 px-2 md:px-3 text-base md:text-lg bg-slate-800 hover:bg-slate-700 rounded-md">
+                                    <li>{tag}</li>
+                                </button>
+                            ))}
+                        </ul>
+                    )
+                }
+                <p class="text-base text-gray-500">
+                    <FormattedDate date={new Date(publishedAt)} /> &bull; updated <FormattedDate
+                        date={new Date(updatedAt)}
+                    />
+                    <span class="ml-4">
+                        {frontmatter.estimatedReadTime}
+                    </span>
+                </p>
+                <hr class="my-4 border-slate-700" />
+                <div class="flex space-x-12">
+                    <article class="format-markdown-content">
+                        <slot />
+                    </article>
+                    <BlogToc headings={headings} />
+                </div>
+            </Container>
+        </main>
+        <Footer />
+    </body>
+</html>
