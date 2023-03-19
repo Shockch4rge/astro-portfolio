@@ -1,5 +1,6 @@
 import { defineConfig } from "astro/config";
-import rehypeAutolinkHeadings from "rehype-autolink-headings/lib/index.js";
+import { rehypeAccessibleEmojis } from "rehype-accessible-emojis";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 
 import { rehypeHeadingIds } from "@astrojs/markdown-remark";
@@ -15,7 +16,11 @@ export default defineConfig({
   integrations: [
     mdx({
       remarkPlugins: [remarkReadingTime],
-      rehypePlugins: [rehypeHeadingIds, rehypeAutolinkHeadings],
+      rehypePlugins: [
+        rehypeHeadingIds, 
+        [rehypeAutolinkHeadings, { behavior: "wrap" }], 
+        rehypeAccessibleEmojis
+      ],
     }),
     sitemap(),
     tailwind(),
