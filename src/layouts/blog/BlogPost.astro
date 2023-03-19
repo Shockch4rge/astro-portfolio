@@ -61,16 +61,21 @@ const { title, description, publishedAt, updatedAt, heroImage, tags, frontmatter
                     )
                 }
                 <p class="text-base text-gray-500">
-                    <FormattedDate date={new Date(publishedAt)} /> &bull; updated <FormattedDate
-                        date={new Date(updatedAt)}
-                    />
+                    <FormattedDate date={new Date(publishedAt)} />
+                    {
+                        updatedAt && (
+                            <span>
+                                &bull; updated <FormattedDate date={new Date(updatedAt)} />
+                            </span>
+                        )
+                    }
                     <span class="ml-4">
                         {frontmatter.estimatedReadTime}
                     </span>
                 </p>
                 <hr class="my-4 border-slate-700" />
                 <div class="flex space-x-12">
-                    <article class="format-markdown-content">
+                    <article class="markdown">
                         <slot />
                     </article>
                     <BlogToc headings={headings} />
