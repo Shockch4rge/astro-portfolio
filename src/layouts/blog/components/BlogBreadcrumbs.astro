@@ -9,11 +9,9 @@ const { links, class: className, ...props } = Astro.props;
 <nav>
     <ul class:list={["flex flex-col md:flex-row md:space-x-2 list-none", className]} {...props}>
         {
-            links.map(link => (
-                <li class="text-base md:text-lg text-gray-600 after:content-['/'] last:after:content-none md:after:content-['>']">
-                    <a href={link.href} class="text-slate-400">
-                        {link.name}
-                    </a>
+            links.map((link, i) => (
+                <li class="text-base md:text-lg text-slate-400 after:content-['/'] after:text-gray-600 last:after:content-none md:after:content-['>']">
+                    {i !== links.length - 1 ? <a href={link.href} class="hover:underline">{link.name}</a> : link.name}
                 </li>
             ))
         }
