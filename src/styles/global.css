@@ -15,6 +15,7 @@
 
 html {
 	scroll-behavior: smooth;
+	--hashtag-icon: url("/icons/hashtag.svg");
 }
 
 button {
@@ -29,8 +30,8 @@ body {
 	hyphens: auto;
 	background: radial-gradient(
 		farthest-side at bottom left, 
-		hsl(212, 48%, 18%) 0%, 
-		hsl(213, 51%, 17%) 50%,
+		hsl(212, 48%, 15%) 0%, 
+		hsl(214, 51%, 14%) 50%,
 		hsl(219, 54%, 10%) 100%
 	);
 	@apply text-slate-300 text-base md:text-lg lg:text-xl;
@@ -82,6 +83,25 @@ blockquote {
 	@apply font-['Avigea'] leading-10 tracking-wider;
 }
 
-.format-markdown-content {
-	@apply prose-cyan prose-xl prose-h2:text-cyan-400 hover:prose-h2:underline prose-h3:text-cyan-500 prose-h3:text-3xl dark:prose-invert;
+.markdown {
+	@apply 
+	prose-cyan prose-lg md:prose-xl
+	prose-headings:relative
+	prose-h2:text-cyan-400
+	prose-h3:text-cyan-500
+	dark:prose-invert
+}
+
+/* Hashtag on anchor headings */
+.markdown > h2,h3,h4 > a {
+	@apply 
+	before:w-8 before:h-8
+	before:px-1.5 before:pt-1
+	before:border-2 before:border-white/10 before:border-solid
+	before:text-xl before:text-slate-500 before:font-bold
+	before:content-[var(--hashtag-icon)]
+	before:opacity-0 hover:before:opacity-100 /* hovering `a` itself, not `::before` */
+	before:rounded-md
+	before:hidden lg:before:block
+	before:absolute before:-left-12 before:translate-y-1/2 before:bottom-1/2
 }
