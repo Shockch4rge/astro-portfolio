@@ -15,6 +15,7 @@
 
 html {
 	scroll-behavior: smooth;
+	scroll-padding-top: 1.2rem;
 	--hashtag-icon: url("/icons/hashtag.svg");
 }
 
@@ -27,7 +28,7 @@ body {
 	margin: auto;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	hyphens: auto;
+	hyphens: manual;
 	background: radial-gradient(
 		farthest-side at bottom left, 
 		hsl(212, 48%, 15%) 0%, 
@@ -35,15 +36,6 @@ body {
 		hsl(219, 54%, 10%) 100%
 	);
 	@apply text-slate-300 text-base md:text-lg lg:text-xl;
-}
-
-textarea {
-	width: 100%;
-	font-size: 16px;
-}
-
-input {
-	font-size: 16px;
 }
 
 content {
@@ -80,7 +72,7 @@ blockquote {
 }
 
 .hero-font {
-	@apply font-['Avigea'] leading-10 tracking-wider;
+	@apply font-["Avigea"] leading-10 tracking-wider;
 }
 
 .markdown {
@@ -93,7 +85,7 @@ blockquote {
 }
 
 /* Hashtag on anchor headings */
-.markdown > h2,h3,h4 > a {
+.markdown > :where(h2, h3, h4) > a {
 	@apply 
 	before:w-8 before:h-8
 	before:px-1.5 before:pt-1
