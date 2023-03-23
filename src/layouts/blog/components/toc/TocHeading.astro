@@ -1,17 +1,18 @@
 ---
+import Link from "@components/Link.astro";
 import type { Heading } from "@utils/types/Heading";
 
 type Props = { heading: Heading };
 const { heading } = Astro.props;
 ---
 
-<li class={`${heading.depth === 3 ? "ml-6 text-base" : "text-lg"} whitespace-`}>
-    <a href={`#${heading.slug}`} class="bg-[length:0%_2px,_100%] hover:bg-[length:100%_2px,0%] bg-left-bottom bg-gradient-to-r from-teal-300 to-cyan-400 no-underline bg-no-repeat transition-[background-size] duration-300 ease-in-out">
+<li class={`${heading.depth === 3 ? "ml-6" : ""} text-lg`}>
+    <Link href={`#${heading.slug}`} class="gradient-underline">
         {heading.text}
-    </a>
+    </Link>
     {
         heading.subheadings.length > 0 && (
-            <ul class="mt-1 space-y-1">
+            <ul class="mt-2 space-y-2">
                 {heading.subheadings.map(subheading => (
                     <Astro.self heading={subheading} />
                 ))}
@@ -19,6 +20,4 @@ const { heading } = Astro.props;
         )
     }
 </li>
-<style>
-
-</style>
+<style></style>

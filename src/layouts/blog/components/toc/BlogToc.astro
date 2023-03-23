@@ -30,8 +30,8 @@ const { headings } = Astro.props;
 const toc = buildToc(headings);
 ---
 
-<nav class="mt-14 max-w-xs py-4 px-6 bg-slate-900 border-2 border-solid border-cyan-500 hidden xl:block self-start rounded-md sticky top-4">
-    <h2 class="text-xl text-blue-400 tracking-widest">OVERVIEW</h2>
+<nav class="mt-14 max-w-xs py-4 px-6 bg-slate-900 border-2 border-solid border-cyan-500 hidden xl:block self-start rounded-md sticky top-8">
+    <h2 class="text-2xl text-blue-400 tracking-widest">OVERVIEW</h2>
     <ul class="mt-4 space-y-2">
         {toc.map(h => <TocHeading heading={h}/>)}
     </ul>
