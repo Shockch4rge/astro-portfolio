@@ -1,0 +1,20 @@
+.markdown {
+    @apply 
+    prose-base md:prose-xl 
+    prose-headings:relative prose-headings:font-semibold 
+    prose-h2:py-1 prose-h2:w-fit prose-h2:bg-gradient-to-r prose-h2:from-cyan-400 prose-h2:to-blue-500 prose-h2:bg-clip-text prose-h2:text-transparent 
+    prose-h3:text-blue-400 
+    dark:prose-invert
+}
+
+/* Hashtag on anchor headings */
+.markdown > :where(h2, h3, h4) > a {
+    @apply 
+    before:w-8 before:h-8 before:px-1.5 before:pt-1 
+    before:border-2 before:border-white/10 before:border-solid 
+    before:text-xl before:text-slate-500 before:font-bold 
+    before:content-[var(--hashtag-icon)] 
+    before:opacity-0 hover:before:opacity-100 /* hovering `a` itself, not `::before` */
+    before:rounded-md before:hidden lg:before:block 
+    before:absolute before:-left-12 before:translate-y-1/2 before:bottom-1/2
+}

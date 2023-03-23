@@ -52,7 +52,7 @@ img {
 }
 
 code {
-	@apply px-1 py-1 text-base bg-slate-400/10 font-["JetBrains_Mono",monospace] rounded-md;
+	@apply px-1.5 py-0.5 text-base bg-slate-400/10 font-["JetBrains_Mono",_monospace] rounded-md;
 }
 
 pre {
@@ -63,37 +63,10 @@ pre > code {
 	all: unset;
 }
 
-blockquote {
-	border: 1px solid #999;
-	color: #222;
-	padding: 2px 0px 2px 20px;
-	margin: 0px;
-	font-style: italic;
-}
-
 .hero-font {
 	@apply font-["Avigea"] leading-10 tracking-wider;
 }
 
-.markdown {
-	@apply 
-	prose-cyan prose-lg md:prose-xl
-	prose-headings:relative
-	prose-h2:text-cyan-400
-	prose-h3:text-cyan-500
-	dark:prose-invert
-}
-
-/* Hashtag on anchor headings */
-.markdown > :where(h2, h3, h4) > a {
-	@apply 
-	before:w-8 before:h-8
-	before:px-1.5 before:pt-1
-	before:border-2 before:border-white/10 before:border-solid
-	before:text-xl before:text-slate-500 before:font-bold
-	before:content-[var(--hashtag-icon)]
-	before:opacity-0 hover:before:opacity-100 /* hovering `a` itself, not `::before` */
-	before:rounded-md
-	before:hidden lg:before:block
-	before:absolute before:-left-12 before:translate-y-1/2 before:bottom-1/2
+.gradient-underline {
+	@apply bg-[length:0%_2px,100%] hover:bg-[length:100%_2px,0%] bg-left-bottom bg-gradient-to-r from-teal-300 to-cyan-400 no-underline bg-no-repeat transition-[background-size] duration-300 ease-in-out;
 }
