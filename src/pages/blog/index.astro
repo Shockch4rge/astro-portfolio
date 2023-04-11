@@ -17,7 +17,7 @@ const isNewPost = (date: Date) => {
     const twoWeeksMs = 1000 * 60 * 60 * 24 * 14;
     const diffMs = new Date().getTime() - date.getTime();
     return diffMs < twoWeeksMs;
-}
+};
 ---
 
 <!DOCTYPE html>
@@ -44,14 +44,11 @@ const isNewPost = (date: Date) => {
                                 )}
                                 <a href={`/blog/${post.slug}/`} class="w-full focus:ring-4 group">
                                     <div
-                                        class={`
-                                            w-full p-0.5 ${
-                                                isNewPost(post.data.publishedAt)
-                                                    ? "is-new-post"
-                                                    : "bg-gradient-to-tr from-slate-400 to-gray-700"
-                                            } 
-                                            rounded-lg relative
-                                        `}
+                                        class={`w-full p-1 rounded-lg relative overflow-hidden ${
+                                            isNewPost(post.data.publishedAt)
+                                                ? "is-new-post"
+                                                : "bg-gradient-to-tr from-slate-500 to-gray-800"
+                                        }`}
                                         aria-hidden="true"
                                     >
                                         <div class="p-6 md:p-8 space-y-3 bg-gray-900 rounded-lg relative">
@@ -98,23 +95,27 @@ const isNewPost = (date: Date) => {
         </main>
         <Footer />
         <style>
-            .is-new-post {
-                background: radial-gradient(
-                    farthest-corner at top,
+            .is-new-post::before {
+                content: "";
+                z-index: -1;
+                position: absolute;
+                height: 750%;
+                inset: -300%;
+                background: conic-gradient(
                     theme("colors.teal.100") 0%,
                     theme("colors.teal.100") 4%,
-                    theme("colors.cyan.300") 12.25%,
-                    theme("colors.cyan.400") 40%,
-                    theme("colors.cyan.400") 40%,
-                    theme("colors.blue.500") 50%
+                    theme("colors.cyan.400") 10%,
+                    theme("colors.blue.500") 50%,
+                    theme("colors.cyan.400") 92%,
+                    theme("colors.teal.100") 96%,
+                    theme("colors.teal.100") 100%
                 );
-                background-size: 200% auto;
-                animation: shine 5s ease-in-out infinite alternate;
+                animation: rotate 5s cubic-bezier(0.03, 0.46, 1, 0.55) infinite;
             }
 
-            @keyframes shine {
-                from {
-                    background-position: right;
+            @keyframes rotate {
+                100% {
+                    transform: rotate(360deg);
                 }
             }
         </style>
