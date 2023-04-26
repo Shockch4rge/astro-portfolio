@@ -3,13 +3,15 @@ import "@styles/markdown.css";
 
 import type { MarkdownLayoutProps } from "astro";
 import type { CollectionEntry } from "astro:content";
-import BlogBreadcrumbs from "./components/BlogBreadcrumbs.astro";
+import BlogBreadcrumbs from "@layouts/blog/BlogBreadcrumbs.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import Container from "@components/Container.astro";
 import BaseHead from "@components/BaseHead.astro";
 import FormattedDate from "@components/FormattedDate.astro";
-import BlogToc from "./components/toc/BlogToc.astro";
+import BlogToc from "@layouts/blog/toc/BlogToc.astro";
+import BlogTag from "@layouts/blog/BlogTag.astro";
+import Background from "@components/Background.astro";
 
 type Props = CollectionEntry<"blog">["data"] &
     MarkdownLayoutProps<{
@@ -29,6 +31,7 @@ const { title, description, publishedAt, updatedAt, heroImage, tags, frontmatter
 <html lang="en">
     <BaseHead title={title} description={description} />
     <body>
+        <Background />
         <Header />
         <main>
             <Container class="py-2 md:py-4">
@@ -55,9 +58,7 @@ const { title, description, publishedAt, updatedAt, heroImage, tags, frontmatter
                     tags && (
                         <ul class="mb-6 flex flex-wrap space-x-1.5 list-none">
                             {tags.map(tag => (
-                                <button class="py-1 px-2 md:px-3 text-base md:text-lg bg-slate-800 hover:bg-slate-700 rounded-md">
-                                    <li>{tag}</li>
-                                </button>
+                                <BlogTag>{tag}</BlogTag>
                             ))}
                         </ul>
                     )
