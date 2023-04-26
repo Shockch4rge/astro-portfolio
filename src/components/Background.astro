@@ -1,0 +1,29 @@
+---
+---
+
+<div class="mesh-background">
+    <div class="pattern"></div>
+</div>
+
+<style>
+    .mesh-background {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background-color: hsla(235, 62%, 9%, 1);
+        background-image: radial-gradient(at 100% 0%, hsla(262, 97%, 13%, 1) 0px, transparent 50%),
+            radial-gradient(at 100% 100%, hsla(240, 46%, 23%, 1) 0px, transparent 50%),
+            radial-gradient(at 0% 0%, hsla(215, 100%, 70%, 0.24) 0px, transparent 50%);
+        z-index: -100;
+    }
+
+    .pattern {
+        opacity: 0.5;
+        background-image: radial-gradient(#4c52a4 1px, hsl(219, 54%, 10%) 1px);
+        background-size: 50px 50px;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        z-index: -99;
+    }
+</style>

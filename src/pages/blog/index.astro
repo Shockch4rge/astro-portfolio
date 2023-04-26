@@ -5,9 +5,10 @@ import BaseHead from "@components/BaseHead.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import FormattedDate from "@components/FormattedDate.astro";
-import BlogTag from "@layouts/blog/components/BlogTag.astro";
+import BlogTag from "@layouts/blog/BlogTag.astro";
 import Container from "@components/Container.astro";
 import Badge from "@components/Badge.astro";
+import Background from "@components/Background.astro";
 
 const posts = (await getCollection("blog")).sort(
     (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf()
@@ -26,6 +27,7 @@ const isNewPost = (date: Date) => {
         <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     </head>
     <body>
+        <Background />
         <Header />
         <main>
             <Container>
@@ -42,51 +44,57 @@ const isNewPost = (date: Date) => {
                                         LATEST POST
                                     </Badge>
                                 )}
-                                <a href={`/blog/${post.slug}/`} class="w-full focus:ring-4 group">
-                                    <div
-                                        class={`w-full p-1 rounded-lg relative overflow-hidden ${
-                                            isNewPost(post.data.publishedAt)
-                                                ? "is-new-post"
-                                                : "bg-gradient-to-tr from-slate-500 to-gray-800"
-                                        }`}
-                                        aria-hidden="true"
-                                    >
-                                        <div class="p-6 md:p-8 space-y-3 bg-gray-900 rounded-lg relative">
-                                            <FormattedDate
-                                                date={post.data.publishedAt}
-                                                class="text-gray-600"
-                                            />
-                                            <h3 class="text-2xl hero-font">{post.data.title}</h3>
-                                            {post.data.tags && (
-                                                <ul
-                                                    class="flex flex-wrap space-x-2"
-                                                    title={`Tags: ${post.data.tags.join(", ")}`}
-                                                >
-                                                    {post.data.tags.map(tag => (
-                                                        <BlogTag
-                                                            aria-label={`Filter blog posts by ${tag}`}
-                                                        >
-                                                            {tag}
-                                                        </BlogTag>
-                                                    ))}
-                                                </ul>
-                                            )}
-                                            <p class="max-w-xl xl:max-w-2xl text-base md:text-lg text-gray-500">
-                                                {post.data.description}
-                                            </p>
-                                            <h6
-                                                class={`text-sm md:text-lg ${
+                                <div
+                                    class={`w-full p-1 rounded-lg focus:ring-4 group relative overflow-hidden ${
+                                        isNewPost(post.data.publishedAt)
+                                            ? "is-new-post"
+                                            : "bg-gradient-to-tr from-slate-500 to-gray-800"
+                                    }`}
+                                    aria-hidden="true"
+                                >
+                                    <div class="p-6 md:p-8 space-y-3 bg-gray-900 rounded-lg relative">
+                                        <FormattedDate
+                                            date={post.data.publishedAt}
+                                            class="text-gray-600"
+                                        />
+                                        <h3 class="text-2xl hero-font">{post.data.title}</h3>
+                                        {post.data.tags && (
+                                            <ul
+                                                class="flex flex-wrap space-x-2"
+                                                title={`Tags: ${post.data.tags.join(", ")}`}
+                                            >
+                                                {post.data.tags.map(tag => (
+                                                    <BlogTag
+                                                        aria-label={`Filter blog posts by ${tag}`}
+                                                    >
+                                                        {tag}
+                                                    </BlogTag>
+                                                ))}
+                                            </ul>
+                                        )}
+                                        <p class="max-w-xl xl:max-w-2xl text-base md:text-lg text-gray-500">
+                                            {post.data.description}
+                                        </p>
+                                        <a
+                                            href={`/blog/${post.slug}/`}
+                                            class={`
+                                                text-sm md:text-lg 
+                                                ${
                                                     isNewPost(post.data.publishedAt)
                                                         ? "text-cyan-300"
                                                         : "text-gray-400"
-                                                } opacity-0 group-hover:opacity-100 lg:absolute lg:translate-y-1/2 lg:group-hover:translate-x-6 lg:bottom-1/2 lg:right-16 transition ease-in-out`}
-                                            >
-                                                Read More
-                                                <i class="ml-2 md:ml-3 fa-solid fa-chevron-right text-xs md:text-sm" />
-                                            </h6>
-                                        </div>
+                                                } 
+                                                opacity-0 group-hover:opacity-100 focus:opacity-100
+                                                lg:absolute lg:translate-y-1/2 lg:group-hover:translate-x-6 lg:focus:translate-x-6
+                                                lg:bottom-1/2 lg:right-16 
+                                                transition ease-in-out
+                                            `}
+                                        >
+                                            Read More
+                                            <i class="ml-2 md:ml-3 fa-solid fa-chevron-right text-xs md:text-sm" />
+                                        </a>
                                     </div>
-                                </a>
+                                </div>
                             </li>
                         ))
                     }
@@ -99,7 +107,7 @@ const isNewPost = (date: Date) => {
                 content: "";
                 z-index: -1;
                 position: absolute;
-                height: 750%;
+                height: 700%;
                 inset: -300%;
                 background: conic-gradient(
                     theme("colors.teal.100") 0%,
@@ -110,7 +118,8 @@ const isNewPost = (date: Date) => {
                     theme("colors.teal.100") 96%,
                     theme("colors.teal.100") 100%
                 );
-                animation: rotate 5s cubic-bezier(0.03, 0.46, 1, 0.55) infinite;
+                /* background: conic-gradient(from 0deg at 50% 50%, #bbfbff, #4ba5ff, #7381ff, #7381ff, #4ba5ff, #BBFBFF); */
+                animation: rotate 5s cubic-bezier(0.44, 1.23, 0.71, 0.38) infinite;
             }
 
             @keyframes rotate {
