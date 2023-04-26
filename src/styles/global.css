@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Karla&display=swap');
+@tailwind base;
 
 @font-face {
 	font-family: Avigea;
@@ -13,60 +14,46 @@
 	font-display: swap;
 }
 
-html {
-	scroll-behavior: smooth;
-	scroll-padding-top: 1.2rem;
-	--hashtag-icon: url("/icons/hashtag.svg");
-}
+@layer base {
+	html {
+		@apply font-["Karla"] scroll-pt-5 scroll-smooth;
+		--hashtag-icon: url("/icons/hashtag.svg");
+	}
 
-button {
-	@apply focus:ring-2 focus:ring-cyan-500 focus:ring-inset
-}
+	button {
+		@apply focus-visible:ring-4 focus-visible:ring-cyan-500 focus-visible:ring-offset-2
+	}
 
-body {
-	font-family: "Karla", sans-serif;
-	margin: auto;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	hyphens: manual;
-	background: radial-gradient(
-		farthest-side at bottom left, 
-		hsl(212, 48%, 15%) 0%, 
-		hsl(214, 51%, 14%) 50%,
-		hsl(219, 54%, 10%) 100%
-	);
-	@apply text-slate-300 text-base md:text-lg lg:text-xl;
-}
+	body {
+		background-color:hsl(219, 54%, 10%);
+		@apply text-slate-300 text-base md:text-lg lg:text-xl break-words;
+	}
 
-content {
-	line-height: 1.6;
-}
+	content {
+		@apply leading-6;
+	}
 
-table {
-	width: 100%;
-}
+	table {
+		@apply w-full;
+	}
 
-img {
-	max-width: 100%;
-	height: auto;
-}
+	code {
+		@apply px-1.5 py-0.5 text-base bg-slate-400/10 font-["JetBrains_Mono",_monospace] rounded-md;
+	}
 
-code {
-	@apply px-1.5 py-0.5 text-base bg-slate-400/10 font-["JetBrains_Mono",_monospace] rounded-md;
-}
+	pre {
+		@apply p-4;
+	}
 
-pre {
-	padding: 1rem;
-}
+	pre > code {
+		all: unset;
+	}
 
-pre > code {
-	all: unset;
-}
+	.hero-font {
+		@apply font-["Avigea"] leading-10 tracking-wider;
+	}
 
-.hero-font {
-	@apply font-["Avigea"] leading-10 tracking-wider;
-}
-
-.gradient-underline {
-	@apply bg-[length:0%_2px,100%] hover:bg-[length:100%_2px,0%] bg-left-bottom bg-gradient-to-r from-teal-300 to-cyan-400 no-underline bg-no-repeat transition-[background-size] duration-300 ease-in-out;
+	.gradient-underline {
+		@apply bg-[length:0%_2px,100%] hover:bg-[length:100%_2px,0%] bg-left-bottom bg-gradient-to-r from-teal-300 to-cyan-400 no-underline bg-no-repeat transition-[background-size] duration-300 ease-in-out;
+	}
 }
