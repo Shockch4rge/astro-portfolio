@@ -1,0 +1,58 @@
+---
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import Container from "@components/Container.astro";
+import BaseHead from "@components/BaseHead.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import ContactCard from "@layouts/contact/ContactCard.astro";
+import ContactButton from "@layouts/contact/ContactButton.astro";
+import StackOverflowLogo from "@assets/stack_overflow.png";
+import GitHubLogo from "@assets/github.png";
+import Background from "@components/Background.astro";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    </head>
+    <body>
+        <Background />
+        <Header title={SITE_TITLE} />
+        <main>
+            <Container class="mt-12 flex flex-col space-y-12">
+                <ContactCard
+                    title="GitHub"
+                    description="Check out my work! I upload all sorts of stuff here, including this blog!"
+                    src={GitHubLogo}
+                    alt="GitHub background image"
+                >
+                    <ContactButton url="https://github.com/shockch4rge">My Projects</ContactButton>
+                </ContactCard>
+                <ContactCard
+                    title="LinkedIn"
+                    description="Connect with me on LinkedIn!"
+                    src=""
+                    alt="LinkedIn background image"
+                >
+                    <ContactButton url="https://www.linkedin.com/in/favian-teo-eu-kiat/">
+                        Let's Connect
+                    </ContactButton>
+                </ContactCard>
+                <ContactCard
+                    title="StackOverflow"
+                    description=""
+                    src={StackOverflowLogo}
+                    alt="StackOverflow background image"
+                >
+                    <ContactButton
+                        url="https://stackoverflow.com/users/16144470/shockch4rge?tab=profile"
+                    >
+                        idk what this is for
+                    </ContactButton>
+                </ContactCard>
+            </Container>
+        </main>
+        <Footer />
+    </body>
+</html>
