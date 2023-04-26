@@ -12,13 +12,16 @@ import { remarkReadingTime } from "./src/utils/plugins/remarkReadingTime.js";
 
 // https://astro.build/config
 export default defineConfig({
+  experimental: {
+    assets: true,
+  },
   site: 'https://example.com',
   integrations: [
     mdx({
       remarkPlugins: [remarkReadingTime],
       rehypePlugins: [
-        rehypeHeadingIds, 
-        [rehypeAutolinkHeadings, { behavior: "wrap" }], 
+        rehypeHeadingIds,
+        [rehypeAutolinkHeadings, { behavior: "wrap" }],
         rehypeAccessibleEmojis
       ],
     }),
